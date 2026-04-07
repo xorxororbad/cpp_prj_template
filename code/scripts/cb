@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "Clean building project..";
+
+c;
+b;
+
+echo "Clean build finished!";
+

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd)";
+
+. project_exec "${SCRIPT_PATH}/common.sh"
+
+c;
+
+echo "";
+
+echo "Cleaning ext project..";
+pushd "${EXT_BUILD_PATH}" > /dev/null;
+
+    if [ -d "${EXT_BUILD_PATH}" ]; then
+        rm -rf "${EXT_BUILD_PATH}"/*;
+        echo "Clean ${EXT_BUILD_PATH}* finished!";
+    else
+        echo "Clean failed!";
+    fi
+
+popd > /dev/null;
+

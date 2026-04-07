@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "Cleaning project..";
+
+SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd)";
+
+. "${SCRIPT_PATH}/common.sh"
+
+pushd "${BUILD_PATH}" > /dev/null;
+    if [ -d "${BUILD_PATH}" ]; then
+        rm -rf "${BUILD_PATH}"/*;
+        echo "Clean ${BUILD_PATH}/* finished!";
+    else
+        echo "Clean failed!";
+    fi
+popd > /dev/null;
+

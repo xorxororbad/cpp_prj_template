@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+
+echo "Building project..";
+
+
+SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd)";
+
+.  "${SCRIPT_PATH}/common.sh"
+
+pushd "${BUILD_PATH}";
+    cmake -G Ninja ..;
+    /usr/bin/time -v ninja;
+    ninja install > /dev/null 2>&1;
+popd;
+
+pushd "${EXT_BUILD_PATH}";
+    cmake -G Ninja ../external/mono_dependency_tree
+    /usr/bin/time -v ninja;
+    ninja install > /dev/null 2>&1;
+popd;
+
+echo "Finished!";
+

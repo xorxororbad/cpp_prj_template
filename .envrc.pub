@@ -1,0 +1,30 @@
+# run 'direnv allow' to source the project environment
+
+export PROJECT_ROOT="$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)/";
+export PROJECT_CODE="${PROJECT_ROOT}/code/";
+export DEPLOY_FOLDER="${PROJECT_CODE}/.deploy";
+export BUILD_FOLDER="${PROJECT_CODE}/.build";
+export PROJECT_SCRIPTS="${PROJECT_CODE}/scripts/";
+export BUILD_EXT_FOLDER="${PROJECT_CODE}/.build_ext";
+export PROJECT_NAME="$(basename ${PROJECT_ROOT})";
+
+echo "Entered ${PROJECT_NAME}"
+
+PATH_add "${PROJECT_ROOT}"
+PATH_add "${PROJECT_CODE}"
+PATH_add "${DEPLOY_FOLDER}"
+PATH_add "${BUILD_FOLDER}"
+PATH_add "${PROJECT_SCRIPTS}"
+PATH_add "${BUILD_EXT_FOLDER}"
+
+pushd "${PROJECT_SCRIPTS}/"
+    if [ ! -d "./.venv" ]; then
+        echo "Initializing virtual environment..";
+        python3 -m venv .venv;
+        . ./.venv/bin/activate;
+        pip install -r ./requirements.txt
+    fi
+    . ./.venv/bin/activate;
+popd
+
+

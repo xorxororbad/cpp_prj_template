@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Running project..";
+
+SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd)";
+
+. "${SCRIPT_PATH}/common.sh"
+
+pushd "${DEPLOY_FOLDER}/bin/";
+    ./"${PROJECT_NAME}"
+popd;
+
+echo "Finished!";
+
