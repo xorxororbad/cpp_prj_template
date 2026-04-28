@@ -1,5 +1,4 @@
-.build
-.deplo.build
-.deploy
-.bxorp
-.venv
+.build/
+.deploy/
+.bxorp/
+.venv/
